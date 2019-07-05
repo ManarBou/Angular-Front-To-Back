@@ -16,6 +16,7 @@ export class UsersComponent implements OnInit {
   enableAdd : boolean = true;
   isActive : boolean = true;
   currentClasses ={}; 
+  currentStyle ={}; 
 
   constructor() { }
 
@@ -53,12 +54,13 @@ export class UsersComponent implements OnInit {
           city : 'd',
           state : 'd'
         },
-        image : "https://lorempixel.com/600/600/people/3",
+        image : "https://lorempixel.com/600/600/people/5",
         isActive : true
       }];
       this.loaded = true;
       // this.showExtended = false;
       this.setCurrentClasses();
+      this.setCurrentStyle();
      }
 
     addUser(user){
@@ -69,6 +71,12 @@ export class UsersComponent implements OnInit {
     this.currentClasses = {
       'btn-success' : this.enableAdd,
       'big-text'    : this.showExtended
+    }
+  }
+  setCurrentStyle(){
+    this.currentStyle = {
+      'padding-top' : this.showExtended ? '0' : '40px',
+      'font-size'   : this.showExtended ? ''  : '40px'
     }
   }
 
