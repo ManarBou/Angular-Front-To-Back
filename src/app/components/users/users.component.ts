@@ -11,7 +11,7 @@ export class UsersComponent implements OnInit {
 
   users: User[];
   loaded: boolean = false;
-  showExtended: boolean = true;
+  showExtended: boolean = false;
   enableAdd: boolean = true;
  
 
@@ -66,6 +66,11 @@ export class UsersComponent implements OnInit {
 
   addUser(user) {
     this.users.push(user);
+  }
+
+  fireEvent(e){
+    // console.log('button clicked..');
+    console.log(e);
   }
 
   
