@@ -1,11 +1,53 @@
+<button (click)="showUserForm = !showUserForm" class="btn btn-dark mb-3">Add user</button>
+<div class="card card-body mb-3" *ngIf="showUserForm">
+    <h2>Add User</h2>
+    <form (submit)="onSubmit($event)">
+        <div class="form-group">
+            <label>First Name  </label>
+            <input class="form-control" type="text" name="firstName" [(ngModel)]="user.firstName">
+        </div>
+
+
+        <div class="form-group">
+            <label>Last Name  </label>
+            <input class="form-control" type="text" name="lastName" [(ngModel)]="user.lastName">
+        </div>
+
+        <div class="form-group">
+            <label>Age </label>
+            <input class="form-control" type="number" name="age" [(ngModel)]="user.age">
+        </div>
+
+        <div class="form-group">
+            <label>Street Adress </label>
+            <input class="form-control" type="text" name="street" [(ngModel)]="user.address.street">
+        </div>
+
+        <div class="form-group">
+            <label>City </label>
+            <input class="form-control" type="text" name="city" [(ngModel)]="user.address.city">
+        </div>
+
+        <div class="form-group">
+            <label>State </label>
+            <input class="form-control" type="text" name="state" [(ngModel)]="user.address.state">
+        </div>
+
+        <button (click)="addUser()" [disabled]="user.firstName =='' || user.lastName ==''" class="btn btn-block mb-3">Add New User</button>
+    </form>
+</div>
 <h2>List of users</h2>
-<button (click)="addUser({firstName : 'angular', lastName : 'Js'})" [disabled]="!enableAdd" class="btn btn-block mb-3">Add New User</button>
+
 <ul class="list-unstyled" *ngIf="loaded && users.length > 0 ">
     <li class="card card-body mb-3" *ngFor="let user of users" [class.bg-light]="user.isActive">
 
-        <h3 [ngStyle]="currentStyle">{{ user.firstName }} {{ user.lastName }}</h3>
+        <h3 [ngStyle]="currentStyle">{{ user.firstName }} {{ user.lastName }}
 
-        <ul class="list-group " *ngIf="showExtended && user.age && user.address ">
+            <small *ngIf="user.age && user.address "><button (click)="user.hide = !user.hide" class="btn btn-dark btn-sm"><i [ngClass]="user.hide?'fa fa-plus': 'fa fa-minus'"></i></button></small>
+
+        </h3>
+
+        <ul class="list-group " *ngIf="!user.hide && user.age && user.address ">
             <li class="list-group-item ">age : {{ user.age }}</li>
             <li class="list-group-item ">adress : {{ user.address.street }}, {{ user.address.city }} {{ user.address.state }}</li>
             <li class="list-group-item">Registred : {{ user.registered | date:"mm/dd/yyyy" }}</li>
