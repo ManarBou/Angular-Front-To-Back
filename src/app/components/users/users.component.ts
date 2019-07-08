@@ -12,12 +12,7 @@ export class UsersComponent implements OnInit {
   user : User = {
     firstName: '',
     lastName: '',
-    age: null,
-    address: {
-      street: '',
-      city: '',
-      state: ''
-  }
+    email:''
 };
   users: User[];
   loaded: boolean = false;
@@ -33,12 +28,7 @@ export class UsersComponent implements OnInit {
       {
         firstName: 'david',
         lastName: 'david',
-        age: 33,
-        address: {
-          street: 'dd',
-          city: 'd',
-          state: 'd'
-        },
+        email:'manar@gmail.com',
 
         isActive: true,
 
@@ -48,12 +38,7 @@ export class UsersComponent implements OnInit {
       {
         firstName: 'manar',
         lastName: 'manar',
-        age: 24,
-        address: {
-          street: 'bd',
-          city: 'test',
-          state: 'casa'
-        },
+       email : 'test@gmail.com',
 
         registered: new Date('07/02/2018 08:30:00'),
         hide : true
@@ -61,13 +46,7 @@ export class UsersComponent implements OnInit {
       {
         firstName: 'david',
         lastName: 'david',
-        age: 33,
-        address: {
-          street: 'dd',
-          city: 'd',
-          state: 'd'
-        },
-
+        email:'adr@gmail.com',
         isActive: true,
 
         registered: new Date('01/05/2018 10:30:00'),
@@ -78,31 +57,19 @@ export class UsersComponent implements OnInit {
     
   }
 
-  addUser() {
-    this.user.isActive = true;
-    this.user.registered = new Date ();
-    this.users.unshift(this.user);
-    this.user = {
-      firstName: '',
-    lastName: '',
-    age: null,
-    address: {
-      street: '',
-      city: '',
-      state: ''
-  }
+  // addUser() {
+  //   this.user.isActive = true;
+  //   this.user.registered = new Date ();
+  //   this.users.unshift(this.user);
+  //   this.user = {
+  //     firstName: '',
+  //   lastName: '',
+  //  email : ''
 
-    }
-  }
-
-  fireEvent(e){
-    // console.log('button clicked..');
-    console.log(e);
-  }
-  // toogleHide(user){
-  //   user.hide = !user.hide;
-
+  //   }
   // }
+
+
 
   onSubmit(e){
     console.log("test envoie...");
