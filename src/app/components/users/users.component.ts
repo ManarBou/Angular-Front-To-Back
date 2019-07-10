@@ -1,5 +1,5 @@
 import { User } from './../../models/User';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 
 @Component({
@@ -19,6 +19,7 @@ export class UsersComponent implements OnInit {
   showExtended: boolean = true;
   enableAdd: boolean = true;
   showUserForm : boolean = false;
+  @ViewChild('userForm')  form : any;
  
 
   constructor() { }
@@ -38,7 +39,7 @@ export class UsersComponent implements OnInit {
       {
         firstName: 'manar',
         lastName: 'manar',
-       email : 'test@gmail.com',
+        email : 'test@gmail.com',
 
         registered: new Date('07/02/2018 08:30:00'),
         hide : true
@@ -71,7 +72,17 @@ export class UsersComponent implements OnInit {
 
 
 
-  onSubmit(){
+  onSubmit({value ,  valid} : {value:User , valid:boolean}){
+    if(!valid){
+      console.log('Form is not valid');
+    }else{
+      value.isActive = true;
+      value.registered = new Date();
+      value.hide = true;
+      this.users.unshift(value);
+
+      this.form.reset();
+    }
     
   }
   
