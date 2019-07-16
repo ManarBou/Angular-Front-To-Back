@@ -9,9 +9,11 @@ import { PostService } from './../../services/post.service';
 })
 export class PostFormComponent implements OnInit {
 
-  @Output() newPost:EventEmitter<Post> = new EventEmitter();
+  @Output() newPost     :EventEmitter<Post> = new EventEmitter();
+  @Output() updatedPost :EventEmitter<Post> = new EventEmitter();
+
   @Input() currentPost : Post;
-  @Input() isEdit : boolean;
+  @Input() isEdit      : boolean;
 
   constructor(private postservice : PostService) { }
 
@@ -21,13 +23,20 @@ export class PostFormComponent implements OnInit {
     if(!title || !body){
       alert('Please add the post..');
     } else {
-      this.postservice.savePost({title,body} as Post).subscribe(post => { this.newPost.emit(post); })
+      this.postservice.savePost({title,body} as Post).subscribe(post =>{
+        this.newPost.emit(post);
+      })
        
     }
   }
 
   updatePost(){
-    console.log("Update...");
+    this.postservice.updatePost(this.currentPost).subscribe(post => {
+      console.log(post);
+      this.isEdit = true;
+      this.updatedPost.emit(post);
+
+    })
   }
 
 }
