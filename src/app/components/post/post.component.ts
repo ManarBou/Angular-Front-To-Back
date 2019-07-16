@@ -1,8 +1,8 @@
 import { Post } from './../../models/Post';
 import { PostService } from './../../services/post.service';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Route } from '@angular/router';
-import { Location } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
+
 
 
 @Component({
@@ -14,8 +14,7 @@ export class PostComponent implements OnInit {
   post : Post;
   
   constructor(private route : ActivatedRoute, 
-              private postService : PostService, 
-              private location :Location) { 
+              private postService : PostService) { 
 
               }
 
