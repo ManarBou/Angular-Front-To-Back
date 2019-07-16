@@ -16,7 +16,7 @@ export class PostService {
 
   constructor(private http : HttpClient) { }
 
-  getPost() : Observable<Post[]>{
+  getPosts() : Observable<Post[]>{
     return this.http.get<Post[]>(this.postsUrl);
   }
   savePost(post : Post) : Observable<Post>{
@@ -30,6 +30,10 @@ export class PostService {
     const id = typeof post === 'number' ? post : post.id;
     const url =  `${this.postsUrl}/${id}`;
     return this.http.delete<Post>(url,httpOptions);
+  }
+  getPost(id : number){
+    const  url = `${this.postsUrl}/${id}`;
+    return this.http.get<Post>(url);
   }
    
 }
